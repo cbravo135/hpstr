@@ -10,14 +10,18 @@
         "info" : "L1L1"
     },
     "pSum_gt"  : {
-        "cut"  : 3.6,
+        "cut"  : 4.0,
         "id"   : 2,
-        "info" : "P_{e^{-}} + P_{e^{+}}>3.6 GeV"
+        "info" : "P_{e^{-}} + P_{e^{+}}>4.0 GeV"
+    },
+    "eleClusE_gt"  : {
+        "cut"  : 0.0,
+        "id"   : 3,
+        "info" : "Electron Cluster Exists"
     },
     "nVtxs_eq" : {
         "cut"  : 1,
-        "id"   : 3,
+        "id"   : 4,
         "info" : "N_{vtx}=1"
     }
-
 }

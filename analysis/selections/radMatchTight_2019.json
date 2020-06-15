@@ -10,9 +10,9 @@
         "info" : "L1L1"
     },
     "pSum_gt"  : {
-        "cut"  : 4.0,
+        "cut"  : 3.6,
         "id"   : 2,
-        "info" : "P_{e^{-}} +  P_{e^{+}} > 4.0 GeV"
+        "info" : "P_{e^{-}} +  P_{e^{+}} > 3.6 GeV"
     },
     "isRadEle_eq" : {
         "cut"  : 1,

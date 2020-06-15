@@ -1,37 +1,42 @@
 {
+    "posEcalClus_eq" : {
+        "cut" : 1,
+        "id"  : 0,
+        "info" : "Cluster x>0 & E>0.2GeV"
+    },
     "eleMom_lt" : {
         "cut" : 3.8,
-        "id"  : 0,
+        "id"  : 1,
         "info" : "p e^{-} < 3.8 GeV"
     },
     "eleTrkChi2_lt" : {
         "cut"  : 30,
-        "id"   : 1,
+        "id"   : 2,
         "info" : "e^{-} Track #chi^{2} < 30"
     },
     "posTrkChi2_lt" : {
         "cut"  : 30,
-        "id"   : 2,
+        "id"   : 3,
         "info" : "e^{+} Track #chi^{2} < 30"
     },
     "eleMom_gt" : {
         "cut" : 1.0,
-        "id"  : 3,
+        "id"  : 4,
         "info" : "p_e^{-} > 1.0 [GeV]"
     },
     "posMom_gt" : {
         "cut" : 0.5,
-        "id"  : 4,
+        "id"  : 5,
         "info" : "p_e^{+} > 0.5 [GeV]"
     },
     "chi2unc_lt" : {
         "cut"   : 20,
-        "id"    : 5,
+        "id"    : 6,
         "info"  : "#chi^{2}_{unc} < 20"
     },
     "maxVtxMom_lt" : {
         "cut" : 4.6,
-        "id"  : 6,
+        "id"  : 7,
         "info" : "p_{vtx} < 4.6 [GeV]"
     }
 }

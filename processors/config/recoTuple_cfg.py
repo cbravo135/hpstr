@@ -114,7 +114,7 @@ if options.isData == 1:
     #p.sequence = [header, track, rawsvt, svthits, ecal, fsp, vtx, c_vtx]
     p.sequence = [header, track, ecal, fsp, vtx, c_vtx]
 else: 
-    p.sequence = [header, track, ecal, fsp, vtx, c_vtx, mcpart]
+    p.sequence = [header, track, svthits, ecal, fsp, vtx, c_vtx, mcpart]
     #p.sequence = [header, track, rawsvt, svthits, ecal, fsp, vtx, c_vtx, mcpart]
 
 p.input_files=[lcio_file]

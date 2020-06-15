@@ -10,6 +10,7 @@
 #include "Track.h"
 #include "TrackerHit.h"
 #include "MCParticle.h"
+#include "CalCluster.h"
 #include "Particle.h"
 #include "Processor.h"
 #include "BaseSelector.h"
@@ -50,11 +51,13 @@ private:
     std::string selectionCfg_;
     TBranch* bvtxs_{nullptr};
     TBranch* bhits_{nullptr};
+    TBranch* becals_{nullptr};
     TBranch* btrks_{nullptr};
     TBranch* bmcParts_{nullptr};
     TBranch* bevth_{nullptr};
     
     std::vector<Vertex*> * vtxs_{};
+    std::vector<CalCluster*> * ecals_{};
     std::vector<Track*>  * trks_{};
     std::vector<TrackerHit*>  * hits_{};
     std::vector<MCParticle*>  * mcParts_{};
@@ -63,6 +66,7 @@ private:
     std::string anaName_{"vtxAna"};
     std::string vtxColl_{"Vertices"};
     std::string hitColl_{"RotatedHelicalTrackHits"};
+    std::string ecalColl_{"RecoEcalClusters"};
     std::string trkColl_{"GBLTracks"};
     std::string mcColl_{"MCParticle"};
     TTree* tree_{nullptr};

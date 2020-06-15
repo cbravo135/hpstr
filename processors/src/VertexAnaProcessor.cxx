@@ -22,6 +22,7 @@ void VertexAnaProcessor::configure(const ParameterSet& parameters) {
         debug_   = parameters.getInteger("debug",debug_);
         anaName_ = parameters.getString("anaName",anaName_);
         vtxColl_ = parameters.getString("vtxColl",vtxColl_);
+        ecalColl_ = parameters.getString("ecalColl",ecalColl_);
         trkColl_ = parameters.getString("trkColl",trkColl_);
         hitColl_ = parameters.getString("hitColl",hitColl_);
         mcColl_  = parameters.getString("mcColl",mcColl_);
@@ -83,6 +84,7 @@ void VertexAnaProcessor::initialize(TTree* tree) {
 
     //init Reading Tree
     tree_->SetBranchAddress(vtxColl_.c_str(), &vtxs_ , &bvtxs_);
+    tree_->SetBranchAddress(ecalColl_.c_str(), &ecals_ , &becals_);
     tree_->SetBranchAddress(hitColl_.c_str(), &hits_   , &bhits_);
     tree_->SetBranchAddress("EventHeader",&evth_ , &bevth_);
     if(!isData_ && !mcColl_.empty()) tree_->SetBranchAddress(mcColl_.c_str() , &mcParts_, &bmcParts_);
@@ -125,6 +127,14 @@ bool VertexAnaProcessor::process(IEvent* ievent) {
         Track* pos_trk = nullptr;
 
         //Trigger requirement - *really hate* having to do it here for each vertex.
+        bool hasPosEcalClus = false;
+        for(int iClus = 0; iClus < ecals_->size(); iClus++)
+        {
+            CalCluster* clus = ecals_->at(iClus);
+            if(clus->getPosition()[0] > 0.0) hasPosEcalClus = true;
+        }
+        if (!vtxSelector->passCutEq("posEcalClus_eq",(int)hasPosEcalClus,weight))
+            break;
 
         if (isData_) {
             if (!vtxSelector->passCutEq("Pair1_eq",(int)evth_->isPair1Trigger(),weight))
@@ -552,7 +562,7 @@ bool VertexAnaProcessor::process(IEvent* ievent) {
         //N selected vertices - this is quite a silly cut to make at the end. But okay. that's how we decided atm.
         if (!_reg_vtx_selectors[region]->passCutEq("nVtxs_eq", nGoodVtx, weight))
             continue;
-        
+
         Vertex* vtx = goodVtx;
 
         Particle* ele = nullptr;
@@ -560,7 +570,7 @@ bool VertexAnaProcessor::process(IEvent* ievent) {
 
         if (!vtx || !_ah->GetParticlesFromVtx(vtx,ele,pos))
             continue;
-        
+
         CalCluster eleClus = ele->getCluster();
         CalCluster posClus = pos->getCluster();
 
